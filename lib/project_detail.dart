@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/exampleModel.dart';
 
 class ProjectDetail extends StatefulWidget {
   @override
@@ -9,6 +10,13 @@ class ProjectDetail extends StatefulWidget {
 
 class _ProjectDetail extends State<ProjectDetail> {
   String _value = "one";
+  double _heightItem = 80.0;
+  
+  List<Example> listExample = []
+    ..add(Example("Task - 1", "SON - 1", 1))
+    ..add(Example("Task - 2", "SON - 2", 99));
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,77 +128,85 @@ class _ProjectDetail extends State<ProjectDetail> {
                       ],
                     ),
                   ),
-                  Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 1.0,
-                  spreadRadius: 1.0,
-                  offset: Offset(
-                    0.5,
-                    0.5,
-                  ),
-                )
-              ],
-            ),
-            height: 80,
-            padding:
-            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        'Design home screen',
-                        style: TextStyle(
-                            color: Color.fromRGBO(23, 43, 77, 1),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
-                      )
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Row(
-                    children: <Widget>[
-                      Icon(Icons.bookmark, color: Colors.lightGreen,),
-                      Text(
-                        'SON-1',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w300),
-                      ),
-                      Spacer(),
-                      Container(
-                        child: Text(
-                          '99',
-                          style: TextStyle(
-                            color: Color.fromRGBO(23, 43, 77, 1),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w300,
-
+                  SizedBox(
+                    width: 300.0,
+                    height: _heightItem*listExample.length + 20,
+                    child: ListView.builder(
+                      itemCount: listExample.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 1.0,
+                                spreadRadius: 1.0,
+                                offset: Offset(
+                                  0.5,
+                                  0.5,
+                                ),
+                              )
+                            ],
                           ),
+                          height: _heightItem,
+                          padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                          child: Column(
+                            children: <Widget>[
+                              Expanded(
+                                child: Row(
+                                  children: <Widget>[
+                                    Text(
+                                      listExample[index].title,
+                                      style: TextStyle(
+                                          color: Color.fromRGBO(23, 43, 77, 1),
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(Icons.bookmark, color: Colors.lightGreen,),
+                                    Text(
+                                      listExample[index].subTitle,
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w300),
+                                    ),
+                                    Spacer(),
+                                    Container(
+                                      child: Text(
+                                        listExample[index].numberTask.toString(),
+                                        style: TextStyle(
+                                          color: Color.fromRGBO(23, 43, 77, 1),
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w300,
 
-                        ),
-                        decoration: new BoxDecoration (
-                            borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
-                            color: Color.fromRGBO(235, 236, 240, 1)
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 7),
-                      )
+                                        ),
 
-                    ],
+                                      ),
+                                      decoration: new BoxDecoration (
+                                          borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+                                          color: Color.fromRGBO(235, 236, 240, 1)
+                                      ),
+                                      padding: EdgeInsets.symmetric(horizontal: 7),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
                   FlatButton(
                       //crossAxisAlignment: CrossAxisAlignment.center,
                     padding: EdgeInsets.all(0),
@@ -216,6 +232,7 @@ class _ProjectDetail extends State<ProjectDetail> {
                     ),
                 ],
               ),
+              //color: Color.fromRGBO(244, 245, 247, 1),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 color: Color.fromRGBO(244, 245, 247, 1),
@@ -223,6 +240,7 @@ class _ProjectDetail extends State<ProjectDetail> {
             ),
             Container(
               width: 300.0,
+              height: 300.0,
               margin: EdgeInsets.all(10),
               child: Column(
                 children: <Widget>[
@@ -232,7 +250,7 @@ class _ProjectDetail extends State<ProjectDetail> {
                       //crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          'TRONG TIẾN TRÌNH',
+                          'CHỜ KIỂM TRA',
                           style: TextStyle(
                               color: Color.fromRGBO(23, 43, 77, 1),
                               fontSize: 18,
@@ -260,7 +278,6 @@ class _ProjectDetail extends State<ProjectDetail> {
                       ],
                     ),
                   ),
-
                 ],
               ),
               decoration: BoxDecoration(
@@ -270,6 +287,7 @@ class _ProjectDetail extends State<ProjectDetail> {
             ),
             Container(
               width: 300.0,
+              height: 300.0,
               margin: EdgeInsets.all(10),
               child: Column(
                 children: <Widget>[
@@ -279,7 +297,7 @@ class _ProjectDetail extends State<ProjectDetail> {
                       //crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          'TRONG TIẾN TRÌNH',
+                          'HOÀN THÀNH',
                           style: TextStyle(
                               color: Color.fromRGBO(23, 43, 77, 1),
                               fontSize: 18,
